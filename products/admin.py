@@ -15,12 +15,12 @@ class CategoryAdmin(admin.ModelAdmin):
 #@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'sku', 
-        'name', 
-        'category', 
-        'price', 
-        'rating', 
-        'image', 
+        'sku',
+        'name',
+        'category',
+        'price',
+        'rating',
+        'image',
         )
     search_fields = ['name']
     list_filter = ('name',)
