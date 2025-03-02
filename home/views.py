@@ -8,6 +8,7 @@ def index(request):
     A view to return index page
     """
     print("about to render...")
+    
     return render(
         request,
         "home/index.html"
