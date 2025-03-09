@@ -24,6 +24,10 @@ def add_to_bag(request, item_id):
     redirect_url = request.POST.get('redirect_url')
 
     bag = request.session.get('bag', {})
+    print('request.session-->>: ', request.session)
+
+    print('bag: ', bag)
+    print('bag.items: ', bag.items())
     print('bag.keys():', bag.keys())
     print('list(bag.keys()):', list(bag.keys()))
     
