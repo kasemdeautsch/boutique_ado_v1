@@ -149,7 +149,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-print (bool(None))
+#print (bool(None))
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -168,3 +168,15 @@ FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PRECENTAGE = 10
 
 #FREE_DELIVERY = 30
+"""
+bag = {20: {'item_size': {'M':2}}, 6: 4, }
+print('------------------------')
+print(bag)
+print('bag.items', bag.items())
+if 'size' in bag[20]['item_size'].keys():
+    print('Ok, bag', list(bag[20]['item_size'].keys()))
+    print('Ok, bag', bag[20]['item_size'].keys())
+else:
+    print('false')
+print('------------------------')
+"""
