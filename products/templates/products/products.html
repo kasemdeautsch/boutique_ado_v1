@@ -145,9 +145,18 @@
 {% block postloadjs %}
 {{ block.super }}
 <script type="text/javascript">
-    $('.btt-link').click(function(e) {
+    var btt = document.getElementsByClassName('btt-link')[0]
+    console.log(btt)
+    btt.addEventListener("click" ,(e)=> {
+    //btt.addEventListener("click" ,function(e) {
         window.scrollTo(0,0)
     })
+    //
+    //$('.btt-link').click(function(e) {
+    //    window.scrollTo(0,0)
+    //})
+    // 
+    cc
 </script>
 <script type="text/javascript">
     $('#sort-selector').change(function(){
