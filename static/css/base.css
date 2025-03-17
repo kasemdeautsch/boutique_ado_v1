@@ -8,7 +8,6 @@ body {
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
-    back
 }
 
 /* from Bulma */
@@ -95,10 +94,28 @@ a.category-badge > span.badge:hover {
     bottom: 10px;
     right: 10px;
 }
+
 .btt-link,
 .update-link,
 .remove-item {
     cursor: pointer;
+}
+
+/* ------------------------------- bootstrap toasts */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
 }
 
 

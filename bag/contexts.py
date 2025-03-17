@@ -8,7 +8,7 @@ def bag_contents(request):
     bag_items = []
     total = 0
     product_count = 0
-
+    sub_total = 0
     bag = request.session.get('bag', {})
     print('----------------')
     print('initial_bag', bag)
@@ -20,11 +20,13 @@ def bag_contents(request):
             product = get_object_or_404(Product, pk=item_id)
             total += item_data * product.price
             product_count += item_data
+            sub_total = item_data * product.price
             #print('product_count-->>>', product_count)
             bag_items.append({
                 'item_id': item_id,
                 'quantity': item_data,
                 'product':  product,
+                'sub_total': sub_total,
             })
             print('----------------')
             print('bag_items_1', bag_items)
