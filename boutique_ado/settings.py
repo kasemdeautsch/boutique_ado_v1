@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Path(__file__).resolve().parent.parent--> C:\Users\kasge\OneDrive\Dokumente\vscode-projects\boutique_ado_v1
+# Path(__file__).resolve()--> C:\Users\kasge\OneDrive\Dokumente\vscode-projects\boutique_ado_v1\boutique_ado\settings.py
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -46,10 +51,9 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
-
+    
     # other
     'crispy_forms',
-    
 ]
 
 MIDDLEWARE = [
@@ -65,7 +69,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'boutique_ado.urls'
 
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 TEMPLATES = [
     {
@@ -78,7 +82,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
@@ -168,8 +172,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 
-print('BASE_DIR----->:', BASE_DIR)
-print('STATICFILES_DIRS----->:', STATICFILES_DIRS)
+# print('BASE_DIR----->:', BASE_DIR)
+# print('STATICFILES_DIRS----->:', STATICFILES_DIRS)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -179,8 +183,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#Stripe
 FREE_DELIVERY_THRESHOLD = 50
-STANDARD_DELIVERY_PRECENTAGE = 10
+STANDARD_DELIVERY_PERCENTAGE = 10
+
+STRIPE_CURRENCY = 'usd'
+#STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+
+#print('STRIPE_PUBLIC_KEY---:', STRIPE_PUBLIC_KEY)
+#print('STRIPE_SECRET_KEY---:', STRIPE_SECRET_KEY)
 
 #FREE_DELIVERY = 30
 """

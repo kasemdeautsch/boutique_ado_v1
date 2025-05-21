@@ -13,9 +13,14 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
-
+    print('request-->:', request)
+    print('request.GET-->:', request.GET)
+    if request.method=='GET':
+        print('request.GET11-->:', bool(request.GET))
     if request.GET:
+        print('request.GET-->:', request.GET)
         if 'sort' in request.GET:
+            print("request.GET['sort']-->:", request.GET['sort'])
             sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'name':
@@ -33,6 +38,7 @@ def all_products(request):
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
+            #print('products-->>:', products)
             categories = Category.objects.filter(name__in=categories)
 
         if 'q' in request.GET:

@@ -27,12 +27,14 @@
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                    {{ bag_items }}
+                    <P>bag_items: {{ bag_items }}</P>
+                     <P>total: {{ total }}</P>
+                     <P>delivery: {{ delivery }}</P>
+                                
                     <br>
                     <br>
                     
                     {{ request.session.bag }}
-                    
                     
                     
                     <div class="table-responsive rounded">
@@ -40,7 +42,7 @@
                             <thead class="text-black">
                                 <tr>
                                     <th scope="col">Product Info</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Product Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Qty</th>
                                     <th scope="col">Subtotal</th>
@@ -48,11 +50,13 @@
                             </thead>
                             <p>BODY</p>
                             {% for item in bag_items %}
-                            
+                            <P>sub_total: {{item.sub_total }}</P>
                                 <tr>
+                                    {% if item.product.image %}
                                     <td class="p-3 w-25">
                                         <img class="img-fluid rounded" src="{{ item.product.image.url }}">
                                     </td>
+                                    {% endif %}
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                                         <p class="my-0"><strong>Size: </strong>{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
@@ -80,11 +84,11 @@
                                                        id="id_qty_{{ item.item_id }}">
                                                     <div class="input-group-append">
                                                         <button class="increment-qty btn btn-sm btn-black rounded-0"
-                                                        data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                        <span>
-                                                            <i class="fas fa-plus fa-sm"></i>
-                                                        </span>
-                                                    </button>
+                                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                            <span>
+                                                                <i class="fas fa-plus fa-sm"></i>
+                                                             </span>
+                                                       </button>
                                                     </div>
                                                     {% if item.product.has_sizes %}
                                                     <input type="hidden" name = "product_size" value="{{ item.size}}">
@@ -179,6 +183,7 @@
         var itemId = $(this).attr('id').split('remove_')[1];
         var size = $(this).data('product_size');
         //var url = `remove/${itemId}/`;
+        console.log('itemId:', itemId)
         var url = `/bag/remove/${itemId}/`;
         var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
         $.post(url, data)

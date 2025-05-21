@@ -10,9 +10,9 @@ def bag_contents(request):
     product_count = 0
     sub_total = 0
     bag = request.session.get('bag', {})
-    print('----------------')
-    print('initial_bag', bag)
-    print('----------------')
+    #print('----------------')
+    #print('initial_bag', bag)
+    #print('----------------')
 
     for item_id, item_data in bag.items():
         #print('now-----')
@@ -40,18 +40,22 @@ def bag_contents(request):
                 print('----------------')
                 total += quantity * product.price
                 product_count += quantity
+                sub_total = quantity * product.price
                 bag_items.append({
                     'item_id': item_id,
                     'quantity': quantity,
+                    'size': size,
+                    'sub_total': sub_total,
                     'product':  product,
-                    'size': size
+                    'sub_total': sub_total,
             })
                 print('----------------')
                 print('bag_items_3', bag_items)
                 print('----------------')
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PRECENTAGE/100)
+        #delivery = total * Decimal(settings.STANDARD_DELIVERY_PRECENTAGE/100)
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0
@@ -66,7 +70,7 @@ def bag_contents(request):
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
-        'me':12,
+        'mex': 'Kass',
     }
 
     return context

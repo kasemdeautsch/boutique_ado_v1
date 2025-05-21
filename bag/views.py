@@ -23,7 +23,9 @@ def add_to_bag(request, item_id):
     Add a quantity of the specified product to the bag
     """
     #product = Product.objects.get(pk=item_id)
+    
     product = get_object_or_404(Product, pk=item_id)
+    
     quantity = int(request.POST.get('quantity'))
     print('request.POST: ', request.POST)
     redirect_url = request.POST.get('redirect_url')
@@ -35,7 +37,7 @@ def add_to_bag(request, item_id):
     bag = request.session.get('bag', {})
     #print('request.session-->>: ', request.session)
 
-    #print('bag0: ', bag)
+    print('bag0: ', bag)
     #print('bag.items0: ', bag.items())
     #print('bag.keys()0:', bag.keys())
     #print('list(bag.keys())0:', list(bag.keys()))
@@ -75,9 +77,9 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
     #messages.add_message(request, messages.SUCCESS, 'OKKKKK')
     
-    #print(request.session['bag'])
+    print("request.session['bag']:>>>", request.session['bag'])
     #print('last bag--->>>', bag)
-    #print('request.session--->>>', request.session)
+    print('request.session--->>>', request.session)
     return redirect(redirect_url)
 
 
@@ -118,7 +120,7 @@ def adjust_bag(request, item_id):
             messages.success(request, f'Removed {product.name} from your bag')
     request.session['bag'] = bag
     #print(request.session['bag'])
-    print('last bag--->>>', bag)
+    #print('last bag--->>>', bag)
     #print('request.session--->>>', request.session)
     #return redirect(reverse('view_bag'))
     return HttpResponseRedirect(reverse('view_bag'))
@@ -129,7 +131,7 @@ def remove_from_bag(request, item_id):
     remove the item from shopping bag
     """
 
-    print('request.POST: ', request.POST)
+    print('request.POST Begin of remove_from_bag: ', request.POST)
     
     try:
         product = get_object_or_404(Product, pk=item_id)
