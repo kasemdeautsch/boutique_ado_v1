@@ -28,16 +28,16 @@ def bag_contents(request):
                 'product':  product,
                 'sub_total': sub_total,
             })
-            print('----------------')
-            print('bag_items_1', bag_items)
-            print('----------------')
+            #print('----------------')
+            #print('bag_items_1', bag_items)
+            #print('----------------')
 
         else:
             product = get_object_or_404(Product, pk=item_id)
             for size, quantity in item_data['items_by_size'].items():
-                print('----------------')
-                print("item_data['items_by_size'].items()", item_data['items_by_size'].items())
-                print('----------------')
+                #print('----------------')
+                #print("item_data['items_by_size'].items()", item_data['items_by_size'].items())
+                #print('----------------')
                 total += quantity * product.price
                 product_count += quantity
                 sub_total = quantity * product.price
@@ -49,9 +49,9 @@ def bag_contents(request):
                     'product':  product,
                     'sub_total': sub_total,
             })
-                print('----------------')
-                print('bag_items_3', bag_items)
-                print('----------------')
+                #print('----------------')
+                #print('bag_items_3', bag_items)
+                #print('----------------')
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         #delivery = total * Decimal(settings.STANDARD_DELIVERY_PRECENTAGE/100)

@@ -27,7 +27,7 @@ def add_to_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     
     quantity = int(request.POST.get('quantity'))
-    print('request.POST: ', request.POST)
+    #print('request.POST: ', request.POST)
     redirect_url = request.POST.get('redirect_url')
     size = None
 
@@ -37,7 +37,7 @@ def add_to_bag(request, item_id):
     bag = request.session.get('bag', {})
     #print('request.session-->>: ', request.session)
 
-    print('bag0: ', bag)
+    #print('bag0: ', bag)
     #print('bag.items0: ', bag.items())
     #print('bag.keys()0:', bag.keys())
     #print('list(bag.keys())0:', list(bag.keys()))
@@ -77,9 +77,9 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
     #messages.add_message(request, messages.SUCCESS, 'OKKKKK')
     
-    print("request.session['bag']:>>>", request.session['bag'])
+    #print("request.session['bag']:>>>", request.session['bag'])
     #print('last bag--->>>', bag)
-    print('request.session--->>>', request.session)
+    #print('request.session--->>>', request.session)
     return redirect(redirect_url)
 
 
@@ -90,7 +90,7 @@ def adjust_bag(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     
-    print('request.POST: ', request.POST)
+    #print('request.POST: ', request.POST)
     
     size = None
 
@@ -98,8 +98,8 @@ def adjust_bag(request, item_id):
         size = request.POST['product_size']
 
     bag = request.session.get('bag', {})
-    print('bag------>>: ', bag)
-    print('request.session-->>: ', request.session)
+    #print('bag------>>: ', bag)
+    #print('request.session-->>: ', request.session)
 
     if size:
         if quantity > 0:
@@ -131,7 +131,7 @@ def remove_from_bag(request, item_id):
     remove the item from shopping bag
     """
 
-    print('request.POST Begin of remove_from_bag: ', request.POST)
+    #print('request.POST Begin of remove_from_bag: ', request.POST)
     
     try:
         product = get_object_or_404(Product, pk=item_id)
@@ -140,7 +140,7 @@ def remove_from_bag(request, item_id):
             size = request.POST['product_size']
 
         bag = request.session.get('bag', {})
-        print('request.session-->>: ', request.session)
+        #print('request.session-->>: ', request.session)
 
         if size:
             del bag[item_id]['items_by_size'][size]
@@ -153,7 +153,7 @@ def remove_from_bag(request, item_id):
 
         request.session['bag'] = bag
         #print(request.session['bag'])
-        print('last bag--->>>', bag)
+        #print('last bag--->>>', bag)
         #print('request.session--->>>', request.session)
         return HttpResponse(status=200)
     except Exception as e:
