@@ -30,7 +30,7 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-
+    print('checkout started>>>>')
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     print('request.POST>> ', request.POST)
@@ -40,7 +40,7 @@ def checkout(request):
     tt = request.session['save-info'] = 'save-info' in request.POST
     print("request.session['save-info'] = 'save-info' in request.POST>>: ", tt)
     if request.method == "POST":
-        print('start')
+        print('request.POST received>>')
         
         bag = request.session.get('bag', {})
 
