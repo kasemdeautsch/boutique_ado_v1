@@ -121,8 +121,8 @@ def checkout(request):
         stripe_total = round(total * 100)
         #total = current_bag.get('grand_total')
         #print('current_bag------>', current_bag, type(current_bag))
-        print('grand_total------>XXX', total)
-        print('stripe_total------>XXX', stripe_total)
+        #print('grand_total------>XXX', total)
+        #print('stripe_total------>XXX', stripe_total)
 
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
@@ -131,7 +131,7 @@ def checkout(request):
         )
         print('STRIPE_PUBLIC_KEY------', stripe_public_key)
         print('STRIPE_SECRET_KEY------', stripe_secret_key)
-        print("intent---->", intent, type(intent))
+        #print("intent---->", intent, type(intent))
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
