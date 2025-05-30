@@ -131,7 +131,7 @@ def checkout(request):
         )
         print('STRIPE_PUBLIC_KEY------', stripe_public_key)
         print('STRIPE_SECRET_KEY------', stripe_secret_key)
-        #print("intent---->", intent, type(intent))
+        print("intent---->", intent, type(intent))
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
