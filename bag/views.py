@@ -22,7 +22,8 @@ def add_to_bag(request, item_id):
     """
     Add a quantity of the specified product to the bag
     """
-    #product = Product.objects.get(pk=item_id)
+    # product = Product.objects.get(pk=item_id)
+    # product = get_object_or_404(Product, id=item_id)
     
     product = get_object_or_404(Product, pk=item_id)
     

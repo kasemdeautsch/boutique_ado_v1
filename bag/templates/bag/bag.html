@@ -187,7 +187,7 @@
         //var url = `remove/${itemId}/`;
         console.log('itemId:', itemId)
         var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size}; /* here we need to replace the slim version of jQuery that comes with bootstrap with the full version. So I'll get that in minified form here from codejquery.com.*/
         $.post(url, data)
          .done(function() {
             console.log(data)

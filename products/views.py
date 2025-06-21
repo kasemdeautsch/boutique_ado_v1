@@ -16,8 +16,10 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
+
     print('request-->:', request)
     print('request.GET-->:', request.GET)
+    
     if request.method=='GET':
         print('request.GET11-->:', bool(request.GET))
     if request.GET:
